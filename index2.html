@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Святого Валентина ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: radial-gradient(circle at bottom, #1b0034, #0b0018);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            color: white;
+            min-height: 100vh;
+            overflow-y: auto;
+            transition: background 1s ease-in-out;
+        }
+
+        .stars, .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: pink;
+            transform: rotate(45deg);
+            animation: fall 3s linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+        
+        .heart::before {
+            top: -7px;
+            left: 0;
+        }
+        
+        .heart::after {
+            left: 7px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            background: linear-gradient(45deg, #ff4d6d, #ff88cc);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 136, 204, 0.8);
+            transition: all 0.3s ease-in-out, background 0.5s, box-shadow 0.5s;
+            animation: pulse 1.5s infinite;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #ff88cc, #ff4d6d);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 136, 204, 1);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.4em;
+            color: #ff88cc;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            text-shadow: 0 0 10px rgba(255, 136, 204, 0.8);
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-box {
+            border: 2px solid #ff88cc;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(255, 136, 204, 0.5);
+            max-width: 600px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="hearts"></div>
+    <h1>С Днём Святого Валентина! ❤️</h1>
+    <div class="text-box">
+        <p>Привет, Настя! 💕<br>
+            Мы пока не так близко знакомы, но даже за это время мне очень приятно общаться с тобой. Не знаю, как сложится наше общение дальше, но хочу просто наслаждаться этими моментами, пока они есть. Прости, если этот текст кажется слишком откровенным — такой уж я человек.
+            Мне просто захотелось сделать для тебя небольшую валентинку, чтобы подарить тебе улыбку. 💖 Пусть этот день принесёт тебе радость, тепло и только самые приятные эмоции. Желаю тебе всего самого лучшего! ✨
+        </p>
+    </div>
+    <button class="btn" onclick="showMessage()">Нажми меня 💝</button>
+    <div class="message" id="message">Ты самая лучшая, красивая и приятная девушка 💞</div>
+    
+    <script>
+        function createHearts() {
+            const heartsContainer = document.querySelector('.hearts');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                heartsContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, 300);
+        }
+
+        function showMessage() {
+            document.body.style.background = 'radial-gradient(circle at top, #ff4d6d, #1b0034)';
+            setTimeout(() => {
+                document.getElementById('message').classList.add('show');
+            }, 800);
+        }
+
+        createHearts();
+    </script>
+</body>
+</html>
